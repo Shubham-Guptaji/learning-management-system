@@ -60,7 +60,7 @@ const Contact = () => {
       <div className="flex items-center justify-center h-[100vh]">
         <form
           onSubmit={handleFormSubmit}
-          className="flex flex-col items-center justify-center gap-2 p-5 rounded-md text-white shadow-[0_0_10px_black] w-[22rem]"
+          className="flex flex-col items-center justify-center gap-2 p-5 rounded-md text-white shadow-[0_0_10px_black] w-[22rem] mx-2"
         >
           <h1 className="text-3xl font-semibold">Contact Form</h1>
           <div className="flex flex-col w-full gap-1">

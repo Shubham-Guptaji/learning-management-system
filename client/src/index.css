@@ -2,8 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
+#root{
    position: relative;
    max-width: 1440px;
    margin: auto;
+}
+
+body{
+   @apply bg-indigo-900;
 }

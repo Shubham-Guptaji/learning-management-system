@@ -9,7 +9,6 @@ import { logout } from "../Redux/authSlice";
 const Layout = ({ children }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   // for checking user logged in or not
   const isLoggedIn = useSelector((state) => state?.auth?.isLoggedIn);
 
@@ -44,9 +43,9 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <div className="min-h-[90vh] bg-slate-500">
+    <div className="min-h-[90vh] bg-slate-500 h-full ">
       {/* adding the daisy ui drawer */}
-      <div className="drawer absolute z-50 left-0 w-fit">
+      <div className="drawer absolute z-50 left-0 w-fit ">
         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">
           <label htmlFor="my-drawer" className="cursor-pointer relative">
@@ -95,7 +94,7 @@ const Layout = ({ children }) => {
             {/* if user is not logged in */}
             {!isLoggedIn && (
               <li className="absolute bottom-4 w-[90%]">
-                <div className="w-full flex items-center justify-center">
+                <div className="w-full flex items-center justify-center sm:flex-row flex-col">
                   <button className="btn-primary px-4 py-1 font-semibold rounded-md w-full">
                     <Link to={"/login"}>Login</Link>
                   </button>
@@ -109,7 +108,7 @@ const Layout = ({ children }) => {
             {/* if user is logged in */}
             {isLoggedIn && (
               <li className="absolute bottom-4 w-[90%]">
-                <div className="w-full flex items-center justify-center">
+                <div className="w-full flex items-center justify-center sm:flex-row flex-col">
                   <button className="btn-primary px-4 py-1 font-semibold rounded-md w-full">
                     <Link to={"/user/profile"}>Profile</Link>
                   </button>

@@ -31,6 +31,7 @@ ChartJS.register(
   BarElement,
   Title
 );
+ChartJS.defaults.color = '#FFFFFF';
 
 const AdminDashboard = () => {
   const dispatch = useDispatch();
@@ -108,17 +109,17 @@ const AdminDashboard = () => {
 
   return (
     <Layout>
-      <div className="min-h-[90vh] pt-5 flex flex-col flex-wrap gap-10 text-white">
+      <div className="min-h-[90vh] pt-5 flex flex-col flex-wrap gap-10 text-white ">
         <h1 className="text-center text-3xl font-semibold text-yellow-500">
           Admin Dashboard
         </h1>
 
         {/* creating the records card and chart for sales and user details */}
-        <div className="grid grid-cols-2 gap-5 m-auto mx-10">
+        <div className="grid md:grid-cols-2 gap-5 m-auto mx-4 sm:mx-10">
           {/* displaying the users chart and data */}
           <div className="flex flex-col items-center gap-10 p-5 shadow-lg rounded-md">
             {/* for displaying the pie chart */}
-            <div className="w-80 h-80">
+            <div className="w-80 h-80 text-white">
               <Pie data={userData} />
             </div>
 
@@ -177,7 +178,7 @@ const AdminDashboard = () => {
         </div>
 
         {/* CRUD courses section */}
-        <div className="mx-[10%] w-[80%] self-center flex flex-col items-center justify-center gap-10 mb-10 ">
+        <div className="md:mx-[10%] w-full px-4 sm:px-10 md:w-[80%] self-center flex flex-col items-center justify-center gap-10 mb-10 ">
           <div className="flex w-full items-center justify-between">
             <h1 className="text-center text-3xl font-semibold">
               Courses Overview
@@ -206,85 +207,87 @@ const AdminDashboard = () => {
             </button>
           </div>
 
-          <table className="table overflow-x-scroll text-black bg-white rounded-md">
-            <thead>
-              <tr>
-                <th>S No.</th>
-                <th>Course Title</th>
-                <th>Course Category</th>
-                <th>Instructor</th>
-                <th>Total Lectures</th>
-                <th>Course Description</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
+          <div className="rounded-md w-full overflow-x-scroll">
+            <table className="table text-black bg-white rounded-md ">
+              <thead>
+                <tr>
+                  <th>S No.</th>
+                  <th>Course Title</th>
+                  <th>Course Category</th>
+                  <th>Instructor</th>
+                  <th>Total Lectures</th>
+                  <th>Course Description</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
 
-            <tbody>
-              {myCourses?.map((element, index) => {
-                return (
-                  <tr key={element?._id} className="text-black">
-                    <td>{index + 1}</td>
-                    <td>
-                      <textarea
-                        readOnly
-                        className="w-40 h-auto bg-transparent resize-none "
-                        value={element?.title}
-                      ></textarea>
-                    </td>
-                    <td>{element?.category}</td>
-                    <td>{element?.createdBy}</td>
-                    <td>{element?.numberOfLectures}</td>
-                    <td className="max-w-28 overflow-hidden text-ellipsis whitespace-nowrap">
-                      <textarea
-                        readOnly
-                        className="w-80 h-auto bg-transparent resize-none"
-                        value={element?.description}
-                      ></textarea>
-                    </td>
+              <tbody>
+                {myCourses?.map((element, index) => {
+                  return (
+                    <tr key={element?._id} className="text-black">
+                      <td>{index + 1}</td>
+                      <td className="flex">
+                        <textarea
+                          readOnly
+                          className="w-40 h-auto bg-transparent self-center resize-none "
+                          value={element?.title}
+                        ></textarea>
+                      </td>
+                      <td>{element?.category}</td>
+                      <td>{element?.createdBy}</td>
+                      <td>{element?.numberOfLectures}</td>
+                      <td className="max-w-28 overflow-hidden text-ellipsis whitespace-nowrap">
+                        <textarea
+                          readOnly
+                          className="w-80 h-auto bg-transparent resize-none"
+                          value={element?.description}
+                        ></textarea>
+                      </td>
 
-                    <td className="flex items-center gap-4">
-                      {/* to edit the course */}
-                      <button
-                        onClick={() =>
-                          navigate("/course/create", {
-                            state: {
-                              initialCourseData: {
-                                newCourse: false,
-                                ...element,
+                      <td className="flex items-center gap-4">
+                        {/* to edit the course */}
+                        <button
+                          onClick={() =>
+                            navigate("/course/create", {
+                              state: {
+                                initialCourseData: {
+                                  newCourse: false,
+                                  ...element,
+                                },
                               },
-                            },
-                          })
-                        }
-                        className="bg-yellow-500 hover:bg-yellow-600 transition-all ease-in-out duration-300 text-xl py-2 px-4 rounded-md font-bold"
-                      >
-                        <MdOutlineModeEdit />
-                      </button>
+                            })
+                          }
+                          className="bg-yellow-500 hover:bg-yellow-600 transition-all ease-in-out duration-300 text-xl py-2 px-4 rounded-md font-bold"
+                        >
+                          <MdOutlineModeEdit />
+                        </button>
 
-                      {/* to delete the course */}
-                      <button
-                        onClick={() => handleCourseDelete(element._id)}
-                        className="bg-red-500 hover:bg-red-600 transition-all ease-in-out duration-30 text-xl py-2 px-4 rounded-md font-bold"
-                      >
-                        <BsTrash />
-                      </button>
+                        {/* to delete the course */}
+                        <button
+                          onClick={() => handleCourseDelete(element._id)}
+                          className="bg-red-500 hover:bg-red-600 transition-all ease-in-out duration-30 text-xl py-2 px-4 rounded-md font-bold"
+                        >
+                          <BsTrash />
+                        </button>
 
-                      {/* to CRUD the lectures */}
-                      <button
-                        onClick={() =>
-                          navigate("/course/displaylectures", {
-                            state: { ...element },
-                          })
-                        }
-                        className="bg-green-500 hover:bg-green-600 transition-all ease-in-out duration-30 text-xl py-2 px-4 rounded-md font-bold"
-                      >
-                        <BsCollectionPlayFill />
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                        {/* to CRUD the lectures */}
+                        <button
+                          onClick={() =>
+                            navigate("/course/displaylectures", {
+                              state: { ...element },
+                            })
+                          }
+                          className="bg-green-500 hover:bg-green-600 transition-all ease-in-out duration-30 text-xl py-2 px-4 rounded-md font-bold"
+                        >
+                          <BsCollectionPlayFill />
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </Layout>

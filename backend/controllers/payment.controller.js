@@ -111,7 +111,7 @@ export const cancelSubscription = asyncHandler(async (req, res, next) => {
   // Checking the user role
   if (user.role === 'ADMIN') {
     return next(
-      new AppError('Admin does not need to cannot cancel subscription', 400)
+      new AppError('Admin cannot cancel their subscription', 400)
     );
   }
 
@@ -133,7 +133,6 @@ export const cancelSubscription = asyncHandler(async (req, res, next) => {
     // Returning error if any, and this error is from razorpay so we have statusCode and message built in
     return next(new AppError(error.error.description, error.statusCode));
   }
-
   // Finding the payment using the subscription ID
   const payment = await Payment.findOne({
     razorpay_subscription_id: subscriptionId,
@@ -141,7 +140,6 @@ export const cancelSubscription = asyncHandler(async (req, res, next) => {
 
   // Getting the time from the date of successful payment (in milliseconds)
   const timeSinceSubscribed = Date.now() - payment.createdAt;
-
   // refund period which in our case is 14 days
   const refundPeriod = 14 * 24 * 60 * 60 * 1000;
 
@@ -154,18 +152,19 @@ export const cancelSubscription = asyncHandler(async (req, res, next) => {
       )
     );
   }
-
   // If refund period is valid then refund the full amount that the user has paid
-  await razorpay.payments.refund(payment.razorpay_payment_id, {
-    speed: 'optimum', // This is required
-  });
+  try {
+    await razorpay.payments.refund(payment.razorpay_payment_id, {
+      speed: 'optimum', // This is required
+    });
+  } catch (error) {
+    console.log(error)
+  }
 
   user.subscription.id = undefined; // Remove the subscription ID from user DB
   user.subscription.status = undefined; // Change the subscription Status in user DB
-
   await user.save();
   await payment.remove();
-
   // Send the response
   res.status(200).json({
     success: true,

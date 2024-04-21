@@ -6,9 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Layout from "../../Layout/Layout";
 import { getUserData, updateProfile } from "../../Redux/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const EditProfile = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [previewImage, setImagePreview] = useState("");
 
   const [data, setData] = useState({
@@ -70,8 +72,9 @@ const EditProfile = () => {
     // dispatching the api call using the thunk
     await dispatch(updateProfile(newUserData));
 
+    navigate("/user/profile");
     // fetching the data to update
-    await dispatch(getUserData());
+    // await dispatch(getUserData());
   };
 
   return (

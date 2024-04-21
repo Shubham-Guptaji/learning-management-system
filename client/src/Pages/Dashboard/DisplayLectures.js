@@ -34,16 +34,16 @@ const DisplayLectures = () => {
   }, []);
   return (
     <Layout>
-      <div className="flex flex-col gap-10 items-center justify-center min-h-[90vh] py-10 text-white mx-[5%]">
+      <div className="flex flex-col gap-10 items-center justify-center min-h-[90vh] py-14 text-white mx-[5%] px-2">
         {/* displaying the course name */}
 
         <h1 className="text-center text-2xl font-semibold text-yellow-500">
           Course Name : {courseDetails?.title}
         </h1>
 
-        <div className="flex justify-center gap-10 w-full">
+        <div className="flex justify-center gap-10 w-full lg:flex-row flex-col items-center">
           {/* left section for playing the video and displaying course details to admin */}
-          <div className="space-y-5 w-[28rem] p-2 rounded-lg shadow-[0_0_10px_black]">
+          <div className="space-y-2 sm:space-y-5 w-full sm:w-[34rem] p-2 rounded-lg shadow-[0_0_10px_black] px-2">
             <video
               className="object-fill rounded-tl-lg rounded-tr-lg w-full"
               src={lectures && lectures[currentVideoIndex]?.lecture?.secure_url}
@@ -53,11 +53,11 @@ const DisplayLectures = () => {
               controlsList="nodownload"
             ></video>
             <div>
-              <h1>
+              <h1 className="my-2">
                 <span className="text-yellow-500">Title : </span>
                 {lectures && lectures[currentVideoIndex]?.title}
               </h1>
-              <p>
+              <p className="text-justify">
                 {" "}
                 <span className="text-yellow-500 line-clamp-4">
                   Description :{" "}
@@ -68,8 +68,8 @@ const DisplayLectures = () => {
           </div>
 
           {/* right section for displaying all the lectures of the course */}
-          <ul className="w-[28rem] p-2 rounded-lg shadow-[0_0_10px_black] space-y-4">
-            <li className="font-semibold text-xl text-yellow-500 flex items-center justify-between">
+          <ul className="space-y-1 sm:space-y-5 w-full sm:w-[34rem] p-2 rounded-lg shadow-[0_0_10px_black] px-2">
+            <li className="font-semibold text-lg sm:text-xl text-yellow-500 flex items-center justify-between mb-2">
               <p>Lectures List</p>
               {role === "ADMIN" && (
                 <button
@@ -89,10 +89,10 @@ const DisplayLectures = () => {
                 return (
                   <li className="space-y-2" key={element._id}>
                     <p
-                      className="cursor-pointer"
+                      className="cursor-pointer mt-3"
                       onClick={() => setCurrentVideoIndex(index)}
                     >
-                      <span className="text-yellow-500">
+                      <span className="text-yellow-500 font-semibold">
                         {" "}
                         Lecture {index + 1} :{" "}
                       </span>
@@ -103,7 +103,7 @@ const DisplayLectures = () => {
                         onClick={() =>
                           handleLectureDelete(courseDetails?._id, element?._id)
                         }
-                        className="btn-primary px-2 py-1 rounded-md font-semibold text-sm"
+                        className="btn-primary px-2 py-1 rounded-md font-semibold text-sm "
                       >
                         Delete Lecture
                       </button>

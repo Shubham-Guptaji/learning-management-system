@@ -119,15 +119,15 @@ const CreateCourse = () => {
 
   return (
     <Layout>
-      <div className="flex items-center justify-center h-[100vh]">
+      <div className="flex items-center justify-center min-h-[100vh] lg:min-h-[auto] sm:h-[100vh] px-2">
         {/* card for creating the new card */}
         <form
           onSubmit={handleFormSubmit}
-          className="flex flex-col justify-center gap-5 rounded-lg p-4 text-white w-[700px] h-[450px] my-10 shadow-[0_0_10px_black] relative"
+          className="flex flex-col justify-center gap-5 rounded-lg p-4 text-white w-[700px] sm:min-h-[auto] min-h-[750px] sm:h-[450px] my-16 sm:my-10 shadow-[0_0_10px_black] relative"
         >
           <Link
             to={"/admin/dashboard"}
-            className="absolute top-8 text-2xl link text-accent cursor-pointer"
+            className="absolute top-8 text-2xl link text-accent cursor-pointer sm:inline "
           >
             <AiOutlineArrowLeft />
           </Link>
@@ -137,7 +137,7 @@ const CreateCourse = () => {
             <span>Course</span>
           </h1>
 
-          <main className="grid grid-cols-2 gap-x-10">
+          <main className="sm:grid sm:grid-cols-2 gap-x-2 sm:gap-x-10">
             {/* for course basic details */}
             <div className="space-y-6">
               <div
@@ -153,11 +153,11 @@ const CreateCourse = () => {
                     <img
                       className="w-full h-44 m-auto border"
                       src={userInput.previewImage}
-                      alt="preview image"
+                      alt="preview "
                     />
                   ) : (
                     <div className="w-full h-44 m-auto flex items-center justify-center border">
-                      <h1 className="font-bold text-lg">
+                      <h1 className="font-bold text-lg text-center">
                         Upload your course thumbnail
                       </h1>
                     </div>

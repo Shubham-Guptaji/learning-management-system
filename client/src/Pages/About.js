@@ -10,15 +10,15 @@ import steveJobs from "../Assets/Images/QuotesPersonalityImage/steveJobs.png";
 const About = () => {
   return (
     <Layout>
-      <div className="pl-20 pt-10 flex flex-col text-white">
+      <div className="container sm:space-x-4 lg:space-x-0 lg:pl-20 pt-10 flex flex-col text-white mx-auto items-center">
         {/* creating the about page main section */}
-        <div className="flex items-center gap-5 mx-10">
+        <div className="flex items-center gap-5 mx-10 lg:flex-row flex-col-reverse justify-center"> 
           {/* out moto section */}
-          <section className="w-1/2 space-y-10">
-            <h1 className="text-5xl text-yellow-500 font-semibold">
+          <section className="w-full lg:w-1/2 space-y-10">
+            <h1 className="text-4xl sm:text-5xl text-yellow-500 font-semibold text-center lg:text-start">
               Affordable and Quality Education
             </h1>
-            <p className="text-xl text-gray-200">
+            <p className="text-xl text-gray-200 text-justify lg:text-start">
               Our goal is to provide the affordable and quality education to the
               world. We are providing the platform for the aspiring teachers and
               students to share their creativity, skills and knowledge to each
@@ -28,13 +28,13 @@ const About = () => {
           </section>
 
           {/* our moto image section */}
-          <div className="w-1/2">
+          <div className="w-full lg:w-1/2">
             <img
               id="test1"
               style={{
                 filter: "drop-shadow(0px 10px 10px rgb(0, 0, 0))",
               }}
-              className="drop-shadow-2xl "
+              className="drop-shadow-2xl mx-auto lg:mx-0"
               src={aboutMainImage}
               alt="aboutMainImage"
             />
@@ -42,7 +42,7 @@ const About = () => {
         </div>
 
         {/* top personalities quotes section */}
-        <div className="carousel m-auto w-1/2 my-16">
+        <div className="carousel mx-auto w-full sm:w-2/3 lg:w-1/2 my-16">
           <div id="slide1" className="carousel-item relative w-full">
             <div className="flex flex-col items-center justify-center gap-4 px-[15%]">
               {/* for personality image */}
@@ -52,7 +52,7 @@ const About = () => {
                 alt="Nelson Mandela"
               />
               {/* for writting the quotes */}
-              <p className="text-xl text-gray-200">
+              <p className="text-xl text-gray-200 text-justify">
                 "Education is the most powerful tool you can use to change the
                 world."
               </p>
@@ -78,7 +78,7 @@ const About = () => {
                 alt="APJ Abdul Kalam"
               />
               {/* for writting the quotes */}
-              <p className="text-xl text-gray-200">
+              <p className="text-xl text-gray-200 text-justify">
                 "Learning gives creativity, creativity leads to thinking,
                 thinking provides knowledge, knowledge makes you great."
               </p>
@@ -104,7 +104,7 @@ const About = () => {
                 alt="einstein"
               />
               {/* for writting the quotes */}
-              <p className="text-xl text-gray-200">
+              <p className="text-xl text-gray-200 text-justify">
                 "Education is not the learning of facts, but the training of the
                 mind to think."
               </p>
@@ -130,7 +130,7 @@ const About = () => {
                 alt="Steve Jobs"
               />
               {/* for writting the quotes */}
-              <p className="text-xl text-gray-200">
+              <p className="text-xl text-gray-200 text-justify">
                 "Innovation distinguishes between a leader and a follower."
               </p>
               {/* for personality name */}
@@ -155,7 +155,7 @@ const About = () => {
                 alt="Bill Gates"
               />
               {/* for writting the quotes */}
-              <p className="text-xl text-gray-200">
+              <p className="text-xl text-gray-200 text-justify">
                 "Technology is just a tool. In terms of getting the kids working
                 together and motivating them, the teacher is the most
                 important."

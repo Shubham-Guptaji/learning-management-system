@@ -16,20 +16,20 @@ const CourseDescription = () => {
   return (
     <Layout>
       {/* wrapper for course description */}
-      <div className="min-h-[90vh] pt-12 px-20 flex flex-col items-center justify-center text-white">
+      <div className="min-h-[90vh] pt-12 px-7 sm:px-20 flex flex-col items-center justify-center text-white">
         {/* displaying the course details */}
-        <div className="grid grid-cols-2 gap-10 py-10 relative">
+        <div className="grid lg:grid-cols-2 gap-10 py-10 relative lg:max-w-full max-w-lg mb-5">
           {/* creating the left side of description box */}
           <div className="space-y-5">
             <img
-              className="w-full h-64"
+              className="w-full h-auto sm:h-64 "
               src={state?.thumbnail?.secure_url}
               alt="thumbnail"
             />
 
             {/* course details */}
             <div className="space-y-4">
-              <div className="flex items-center justify-between text-xl">
+              <div className="sm:flex items-center justify-between text-xl">
                 <p className="font-semibold">
                   <span className="text-yellow-500 font-bold">
                     Total Lectures :{" "}
@@ -75,7 +75,7 @@ const CourseDescription = () => {
 
             <p className="text-yellow-500 font-bold">Course Description :</p>
 
-            <p>{state.description}</p>
+            <p className="text-justify">{state.description}</p>
           </div>
         </div>
       </div>

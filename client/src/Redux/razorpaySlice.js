@@ -29,7 +29,7 @@ export const purchaseCourseBundle = createAsyncThunk(
       const res = await axiosInstance.post("/payments/subscribe");
       return res.data;
     } catch (error) {
-      toast.error(error ?.response ?.data ?.message);
+      toast.error(error?.response?.data?.message);
     }
   }
 );
@@ -81,6 +81,7 @@ export const cancelCourseBundle = createAsyncThunk(
         success: "Bundle unsubscibed successfully",
         error: "Failed to unsubscibe the bundle",
       });
+      console.log(res);
       const response = await res;
       return response.data;
     } catch (error) {
